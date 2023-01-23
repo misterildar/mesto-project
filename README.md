@@ -10,4 +10,4 @@
 Научился управлять размерами для неявных строк и для столбцов с помощью свойств grid-auto-rows и grid-auto-columns.
 
 
-Посмотреть проект https://misterildar.github.io/mesto-project/
+Посмотреть проект https://misterildar.github.io/mesto-project/index.html
