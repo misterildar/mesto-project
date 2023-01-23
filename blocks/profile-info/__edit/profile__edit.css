@@ -1,0 +1,17 @@
+.profile__edit {
+  padding-bottom: 8px;
+  width: 24px;
+  align-self: flex-end;
+}
+
+@media screen and (max-width: 1023px) {
+  .profile__edit {
+    width: 18px;
+    padding-bottom: 5px;
+  }
+}
+
+.profile__edit:hover {
+  opacity: 0.6;
+  transition: 0.2s;
+}

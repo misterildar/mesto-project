@@ -1,0 +1,19 @@
+.popup-container__close-icon {
+    position: fixed;
+    top: 155px;
+   
+}
+
+@media screen and (max-width: 602px) {
+    .popup-container__close-icon {
+       width: 20px;
+       top: 87px;
+       right: calc((100% - 282px)/2); 
+    }
+    
+}
+
+.popup-container__close-icon:hover {
+    opacity: 0.6;
+    transition: 0.2s;
+}

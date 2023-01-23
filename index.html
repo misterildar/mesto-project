@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Mesto</title>
+  </head>
+  <body class="page-color">
+    
+    <header class="header">
+      <img class="header__logo" src="./image/logo.svg" alt="Место" />
+      <div class="header__line"></div>
+    </header>
+
+    <main class="page">
+      <section class="profile">
+        <img
+          class="profile__avatar"
+          src="./image/Avatar.jpg"
+          alt="Жак-Ив Кусто"
+        />
+        <div class="profile-info">
+          <h1 class="profile-info__title">Жак-Ив Кусто</h1>
+          <img
+            class="profile__edit"
+            src="./image/Edit Button.svg"
+            alt="Редактировать"
+          />
+          <p class="profile-info__subtitle">Исследователь океана</p>
+        </div>
+        <button class="profile__add">
+          <img src="./image/profile-plus.png" alt="+" />
+        </button>
+      </section>
+
+      <ul class="cards">
+        <li>
+          <article class="card">
+            <img
+              class="card__img"
+              src="./image/Mask Group.jpg"
+              alt="Карачаевск"
+            />
+            <div class="card__buttom">
+              <h3 class="card__title">Карачаевск</h3>
+              <img
+                class="card__heart card__heart_checked"
+                src="./image/card-heart.svg"
+                alt="Сердечко"
+              />
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <img
+              class="card__img"
+              src="./image/Mask Group-1.jpg"
+              alt="Гора Эльбрус"
+            />
+            <div class="card__buttom">
+              <h3 class="card__title">Гора Эльбрус</h3>
+              <img
+                class="card__heart card__heart_checked"
+                src="./image/heart-white.svg"
+                alt="Сердечко"
+              />
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <img
+              class="card__img"
+              src="./image/Mask Group-2.jpg"
+              alt="Домбай"
+            />
+            <div class="card__buttom">
+              <h3 class="card__title">Домбай</h3>
+              <div class="card__heart card__heart_checked">
+            </div>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <img
+              class="card__img"
+              src="./image/Mask Group-4.jpg"
+              alt="Гора Эльбрус"
+            />
+            <div class="card__buttom">
+              <h3 class="card__title">Гора Эльбрус</h3>
+              <img
+                class="card__heart card__heart_checked"
+                src="./image/card-heart.svg"
+                alt="Сердечко"
+              />
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <img
+              class="card__img"
+              src="./image/Mask Group-5.jpg"
+              alt="Домбай"
+            />
+            <div class="card__buttom">
+              <h3 class="card__title">Домбай</h3>
+              <img
+                class="card__heart card__heart_checked"
+                src="./image/card-heart.svg"
+                alt="Сердечко"
+              />
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <img
+              class="card__img"
+              src="./image/Mask Group-3.jpg"
+              alt="Карачаево-Ч..."
+            />
+            <div class="card__buttom">
+              <h3 class="card__title">Карачаево-Черкессия</h3>
+              <img
+                class="card__heart card__heart_checked"
+                src="./image/card-heart.svg"
+                alt="Сердечко"
+              />
+            </div>
+          </article>
+        </li>
+      </ul>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
+    </footer>
+
+    <section class="popup popup_opened">
+      <!-- Если в папке popup раскоментировать код, popup закроется. -->
+      <article class="popup-container">
+        <h2 class="popup-container__title">Редактировать профиль</h2>
+        <form class="form">
+          <fieldset class="popup-container__name-profile">
+            <label for="name-profile"></label>
+            <input class="popup-container__form-item" type="text" id="name-profile" name="name-profile" placeholder="Жак-Ив Кусто" required>
+          </fieldset>
+          <fieldset class="popup-container__name-profession">
+            <label for="profession"></label>
+            <input class="popup-container__form-item" type="text" id="profession" name="profession" placeholder="Исследователь океана" required>
+          </fieldset>
+          <button class="popup-container__button" type="submit">Сохранить</button>
+          <img class="popup-container__close-icon" src="./image/Close Icon.svg" alt="X">
+        </form>
+      </article>
+    </section>
+  </body>
+</html>
+
