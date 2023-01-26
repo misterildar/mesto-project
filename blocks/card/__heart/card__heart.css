@@ -3,6 +3,10 @@
     background-repeat: no-repeat;
     width: 22px;
     height: 19px;
+    padding-left: 15px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
 }
 
 .card__heart:hover {
