@@ -9,7 +9,6 @@
   position: absolute;
   top: -44px;
   right: -44px;
-
 }
 
 @media screen and (max-width: 602px) {
@@ -18,8 +17,8 @@
     height: 20px;
     top: -35px;
     right: 0px;
+    background-size: 20px;
   }
-
 }
 
 .popup-container__close-icon:hover {
