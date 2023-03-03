@@ -36,108 +36,15 @@
         ></button>
       </section>
 
-      <section>
-        <ul class="cards">
-          <li class="card">
-            <img
-              class="card__img"
-              src="./image/Mask-Group.jpg"
-              alt="Карачаевск"
-            />
-            <div class="card__buttom">
-              <h3 class="card__title">Карачаевск</h3>
-              <button
-                class="card__heart"
-                type="button"
-                aria-label="Сердечко"
-              ></button>
-            </div>
-          </li>
-          <li class="card">
-            <img
-              class="card__img"
-              src="./image/Mask-Group-1.jpg"
-              alt="Гора Эльбрус"
-            />
-            <div class="card__buttom">
-              <h3 class="card__title">Гора Эльбрус</h3>
-              <button
-                class="card__heart"
-                type="button"
-                aria-label="Сердечко"
-              ></button>
-            </div>
-          </li>
-
-          <li class="card">
-            <img
-              class="card__img"
-              src="./image/Mask-Group-2.jpg"
-              alt="Домбай"
-            />
-            <div class="card__buttom">
-              <h3 class="card__title">Домбай</h3>
-              <button
-                class="card__heart"
-                type="button"
-                aria-label="Сердечко"
-              ></button>
-            </div>
-          </li>
-          <li class="card">
-            <img
-              class="card__img"
-              src="./image/Mask-Group-4.jpg"
-              alt="Гора Эльбрус"
-            />
-            <div class="card__buttom">
-              <h3 class="card__title">Гора Эльбрус</h3>
-              <button
-                class="card__heart"
-                type="button"
-                aria-label="Сердечко"
-              ></button>
-            </div>
-          </li>
-          <li class="card">
-            <img
-              class="card__img"
-              src="./image/Mask-Group-5.jpg"
-              alt="Домбай"
-            />
-            <div class="card__buttom">
-              <h3 class="card__title">Домбай</h3>
-              <button
-                class="card__heart"
-                type="button"
-                aria-label="Сердечко"
-              ></button>
-            </div>
-          </li>
-          <li class="card">
-            <img
-              class="card__img"
-              src="./image/Mask-Group-3.jpg"
-              alt="Карачаево-Ч..."
-            />
-            <div class="card__buttom">
-              <h3 class="card__title">Карачаево-Черкессия</h3>
-              <button
-                class="card__heart"
-                type="button"
-                aria-label="Сердечко"
-              ></button>
-            </div>
-          </li>
-        </ul>
-      </section>
+      <div>
+        <ul class="cards"></ul>
+      </div>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
     </footer>
 
-    <div class="popup popup_opened">
-      <!-- Если в папке popup раскоментировать код, popup закроется. -->
+    <div class="popup" id="profile-info">
       <article class="popup-container">
         <button
           class="popup-container__close-icon"
@@ -145,7 +52,7 @@
           aria-label="X"
         ></button>
         <h2 class="popup-container__title">Редактировать профиль</h2>
-        <form class="form" name="edit-profile-info" method="post">
+        <form class="form form-profile" name="edit-profile-info" method="post">
           <fieldset class="form__input">
             <label for="input-name"></label>
             <input
@@ -156,21 +63,97 @@
               placeholder="Ваше имя"
               required
             />
-            <label for="input-profesion"></label>
+            <label for="input-profession"></label>
             <input
               class="form__item"
               type="text"
-              id="input-profesion"
-              name="input-profesion"
+              id="input-profession"
+              name="input-profession"
               placeholder="Профессия или хобби"
               required
             />
-            <button class="form__button" type="submit" aria-label="Сохранить">
+            <button class="form__button" id="profile-info-button" type="submit" aria-label="Сохранить">
               Сохранить
             </button>
           </fieldset>
         </form>
       </article>
     </div>
+    <div class="popup"  id="popup-new-card">
+      <article class="popup-container">
+        <button
+          class="popup-container__close-icon" id = "close-new-card"
+          type="button"
+          aria-label="X"
+        ></button>
+        <h2 class="popup-container__title">Новое место</h2>
+        <form class="form form-place" name="add-new-card" method="post">
+          <fieldset class="form__input">
+            <label for="input-name-place"></label>
+            <input
+              class="form__item"
+              type="text"
+              id="input-name-place"
+              name="input-name-place"
+              placeholder="Название"
+              required
+            />
+            <label for="input-link"></label>
+            <input
+              class="form__item"
+              type="text"
+              id="input-link"
+              name="input-link"
+              placeholder="Ссылка на картинку"
+              required
+            />
+            <button class="form__button" id="create-new-card" type="submit" aria-label="Создать">
+              Создать
+            </button>
+          </fieldset>
+        </form>
+      </article>
+    </div>
+
+    <div class="popup popup-image__background">
+      <article class="popup-image">
+            <div class="popup-image__container">
+              <img src="#" alt="#" class="popup-image__photo">
+              <button
+              class="popup-container__close-icon popup-image__close"
+              type="button"
+              aria-label="X"
+              ></button>
+              <h2 class="popup-image__text"></h2>
+            </div>
+      </article>
+    </div>
+
+    <template id="card-template">
+      <li class="card">
+        <img
+          class="card__img" src="" alt=""
+        />
+        <button
+            class="card__trash"
+            type="button"
+            aria-label="Корзина"
+          ></button>
+        <div class="card__buttom">
+          <h3 class="card__title"></h3>
+          <button
+            class="card__heart"
+            type="button"
+            aria-label="Сердечко"
+          ></button>
+        </div>
+      </li>
+    </template>
+    <script src="./data.js"></script>
+    <script src="./script.js"></script>
   </body>
 </html>
+
+
+
+
