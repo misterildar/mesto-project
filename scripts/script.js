@@ -77,7 +77,6 @@ openPopupNewCard.addEventListener('click', () => {
 function addNewCard(evt) {
   evt.preventDefault();
   const newCard = createCard(inputNewCardPlaceName.value, inputNewCardLink.value);
-  createCard(newCard);
   cardsContainer.prepend(newCard);
 
   // Очищаем форму ввода
@@ -102,9 +101,10 @@ function createCard (name, link) {
   })
   const resetButton = newCard.querySelector('.card__trash')
 
-  resetButton.addEventListener('click', () => {
-    document.querySelector('.card').remove()
+  resetButton.addEventListener('click', (evt) => {
+    evt.target.closest('.card').remove()
   });
+
 
   cardImg.addEventListener('click', () => {
     openFullScreenImageCard(name, link)
