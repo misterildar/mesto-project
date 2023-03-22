@@ -4,7 +4,7 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  row-gap: 15px;
+  row-gap: 9px;
 }
 
 @media screen and (max-width: 602px) {

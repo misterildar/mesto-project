@@ -4,22 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
     <title>Mesto</title>
   </head>
   <body class="page-color">
     <header class="header">
-      <img class="header__logo" src="./image/logo.svg" alt="Место" />
+      <img class="header__logo" src="<%=require('./image/logo.svg')%>" alt="Место" />
     </header>
 
     <main class="page">
       <section class="profile">
         <img
           class="profile__avatar"
-          src="./image/Avatar.jpg"
+          src="<%=require('./image/Avatar.jpg')%>"
           alt="Фото профиля"
         />
-
         <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <button
@@ -52,26 +50,36 @@
           aria-label="X"
         ></button>
         <h2 class="popup-container__title">Редактировать профиль</h2>
-        <form class="form form-profile" name="edit-profile-info" method="post">
+        <form class="form form-profile" name="edit" method="post" novalidate>
           <fieldset class="form__input">
             <label for="input-name"></label>
             <input
               class="form__item"
               type="text"
               id="input-name"
-              name="input-name"
+              name="name"
               placeholder="Ваше имя"
+              minlength="2"
+              maxlength="40"
+              pattern="^[A-Za-zА-Яа-яЁё\s]+$"
+              data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
               required
             />
+            <span class="input-name-error form__item-error"></span>
             <label for="input-profession"></label>
             <input
               class="form__item"
               type="text"
               id="input-profession"
-              name="input-profession"
+              name="profession"
               placeholder="Профессия или хобби"
+              minlength="2"
+              maxlength="200"
+              pattern="^[A-Za-zА-Яа-яЁё\s]+$"
+              data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
               required
             />
+            <span class="input-profession-error form__item-error"></span>
             <button class="form__button" id="profile-info-button" type="submit" aria-label="Сохранить">
               Сохранить
             </button>
@@ -87,26 +95,32 @@
           aria-label="X"
         ></button>
         <h2 class="popup-container__title">Новое место</h2>
-        <form class="form form-place" name="add-new-card" method="post">
+        <form class="form form-place" name="add" method="post" novalidate>
           <fieldset class="form__input">
             <label for="input-name-place"></label>
             <input
               class="form__item"
               type="text"
               id="input-name-place"
-              name="input-name-place"
+              name="place"
               placeholder="Название"
+              minlength="2"
+              maxlength="30"
+              pattern="^[A-Za-zА-Яа-яЁё\s]+$"
+              data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
               required
             />
+            <span class="input-name-place-error form__item-error"></span>
             <label for="input-link"></label>
             <input
               class="form__item"
-              type="text"
+              type="url"
               id="input-link"
-              name="input-link"
+              name="link"
               placeholder="Ссылка на картинку"
               required
             />
+            <span class="input-link-error form__item-error"></span>
             <button class="form__button" id="create-new-card" type="submit" aria-label="Создать">
               Создать
             </button>
@@ -149,11 +163,8 @@
         </div>
       </li>
     </template>
-    <script src="./scripts/data.js"></script>
-    <script src="./scripts/script.js"></script>
   </body>
 </html>
-
 
 
 
