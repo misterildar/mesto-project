@@ -30,6 +30,7 @@ const allElements = {
 };
 
 
+
 const initialCards = [
   {
     name: 'Архыз',

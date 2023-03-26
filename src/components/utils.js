@@ -12,12 +12,7 @@
         closePopup(popup)
       }
     });
-    //  Добавил Закрытие попапа кликом по бокам фотографии, до этого срабатывало только сверху и снизу.
-    popupImageCloseClick.addEventListener('click', (evt) => {
-      if (evt.target.classList.contains('popup-image')) {
-        closePopup(popup)
-      }
-    });
+
     document.addEventListener('keydown', (evt) => {
      if (evt.key === 'Escape') {
       closePopup(popup)
