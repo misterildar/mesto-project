@@ -12,4 +12,4 @@
 Познакамился с JS.
 Настроил Webpack.
 
-
+Посмотреть проект https://misterildar.github.io/mesto-project/
