@@ -17,6 +17,9 @@ const professionProfile = profileForm.querySelector('#input-profession');
 const cardForm = document.querySelector('.form-place');
 const namePlace = cardForm.querySelector('#input-name-place');
 const linkPlace = cardForm.querySelector('#input-link');
+const cangeAvatarImg = document.querySelector('.profile__btn-change-avatar-img');
+const popupChangeAvatarImg = document.querySelector('#popup-change-avatar-img');
+
 
 
 
@@ -58,4 +61,4 @@ const initialCards = [
   }
 ];
 
-export {openPopupProfile, profileForm, openPopupNewCard, initialCards, popupNewCard, popupProfile, profileTitle, profileSubtitle, cardsContainer, popupImage, popupImagePhoto, popupImageText, closeButtons,cardTemplate, popupImageCloseClick, nameProfile, professionProfile, namePlace, linkPlace, allElements, cardForm};
+export {openPopupProfile, profileForm, openPopupNewCard, initialCards, popupNewCard, popupProfile, profileTitle, profileSubtitle, cardsContainer, popupImage, popupImagePhoto, popupImageText, closeButtons,cardTemplate, popupImageCloseClick, nameProfile, professionProfile, namePlace, linkPlace, allElements, cardForm, cangeAvatarImg, popupChangeAvatarImg,};

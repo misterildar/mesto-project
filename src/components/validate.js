@@ -100,4 +100,4 @@ function enableValidation (objectElements) {
 
 
 
-export {enableValidation, buttonFalse}
+export {enableValidation, buttonFalse, hideInputError}

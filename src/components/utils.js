@@ -1,4 +1,4 @@
-  import {closeButtons, popupImageCloseClick} from './data.js'
+  import {closeButtons} from './data.js'
   import {closePopup} from './modal.js'
 
   // Для закрытия всех popup
@@ -12,10 +12,4 @@
         closePopup(popup)
       }
     });
-
-    document.addEventListener('keydown', (evt) => {
-     if (evt.key === 'Escape') {
-      closePopup(popup)
-     }
-    })
   });
