@@ -1,60 +1,68 @@
-import {initialCards, openPopupProfile, profileForm, openPopupNewCard, popupNewCard, allElements, cardsContainer, cardForm, nameProfile, profileTitle, professionProfile, profileSubtitle, popupProfile, cangeAvatarImg, popupChangeAvatarImg, namePlace, linkPlace } from  './data.js'
-import {openPopup, closePopup, } from './modal.js'
-import {createCard, addNewCard} from './card.js';
-import {enableValidation, hideInputError, buttonFalse} from './validate.js';
-import {} from './utils';
+import {
+  cardForm,
+  profileForm,
+  allElements,
+  profileAvatar,
+  cardsContainer,
+  formChangeAvatar,
+  popupChangeAvatarImg,
+  inputChangeAvatarImg,
+  buttonSaveUbdateAvatarImg,
+  profileBtnChangeAvatarImg,
+} from './data.js';
 import '../pages/index.css';
-
-
-
-initialCards.forEach((element) => {
-  const newCard = createCard(element.name, element.link)
-  cardsContainer.append(newCard)
-});
+import { openPopup, closePopup } from './modal.js';
+import { addNewCard, createCard } from './card.js';
+import { changeAvatarImg, getUserInfo, getInitialCards} from './api.js';
+import { enableValidation, hideInputError, buttonFalse } from './validate.js';
+import { handleProfileFormSubmit, updateUserData, renderLoading} from './utils';
 
 enableValidation(allElements);
 
 
+function updateAvatarImage(evt) {
+  evt.preventDefault();
+  renderLoading(popupChangeAvatarImg, true);
+  changeAvatarImg(inputChangeAvatarImg.value)
+    .then((img) => {
+      profileAvatar.src = img.avatar;
+      closePopup(popupChangeAvatarImg);
+    })
+    .catch((error) =>
+      console.log(
+        `Произошла ошибка при попытке редактировании данных пользователя: ${error}`
+      )
+    )
+    .finally(() => renderLoading(popupChangeAvatarImg, false));
+}
+
+
+profileBtnChangeAvatarImg.addEventListener('click', () => {
+  openPopup(popupChangeAvatarImg);
+  hideInputError(formChangeAvatar, inputChangeAvatarImg, allElements);
+  formChangeAvatar.reset();
+  buttonFalse(buttonSaveUbdateAvatarImg, allElements);
+});
+
+
 cardForm.addEventListener('submit', addNewCard);
 
-
-cangeAvatarImg.addEventListener('click', () => {
-  openPopup(popupChangeAvatarImg)
-})
-
-
-// Редактирование Профиля
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  profileTitle.textContent = nameProfile.value;
-  profileSubtitle.textContent = professionProfile.value;
-  closePopup(popupProfile);
-}
+formChangeAvatar.addEventListener('submit', updateAvatarImage);
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 
-openPopupProfile.addEventListener('click', () => {
-  nameProfile.value = profileTitle.textContent ;
-  professionProfile.value = profileSubtitle.textContent ;
-  openPopup(popupProfile);
-  hideInputError(profileForm, nameProfile, allElements);
-  hideInputError(profileForm, professionProfile, allElements);
 
 
-});
-
-
-
-openPopupNewCard.addEventListener('click', () => {
-  openPopup(popupNewCard);
-  hideInputError(cardForm, namePlace, allElements);
-  hideInputError(cardForm, linkPlace, allElements);
-  const buttonPlus = document.querySelector('#create-new-card')
-  buttonFalse (buttonPlus, allElements)
-  cardForm.reset()
-});
-
+Promise.all([getUserInfo(), getInitialCards()])
+  .then(([userInfo, posts]) => {
+    updateUserData(userInfo);
+    posts.forEach((element) => {
+      const newCard = createCard(element);
+      cardsContainer.append(newCard);
+      });
+  })
+  .catch((error) => console.log(`Ошибка при загрузке приложения: ${error}`))
 
 
 

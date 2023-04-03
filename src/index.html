@@ -8,19 +8,30 @@
   </head>
   <body class="page-color">
     <header class="header">
-      <img class="header__logo" src="<%=require('./image/logo.svg')%>" alt="Место" />
+      <img
+        class="header__logo"
+        src="<%=require('./image/logo.svg')%>"
+        alt="Место"
+      />
     </header>
 
     <main class="page">
       <section class="profile">
         <div class="profile__avatar-container">
           <img
-          class="profile__avatar"
-          src="<%=require('./image/Avatar.jpg')%>"
-          alt="Фото профиля"
-        />
-        <button class="profile__btn-change-avatar-img" type="button" aria-label="Изменить фотографию">
-          <img  src="<%=require('./image/pencil-avatar.svg')%>" alt="Редактировать">
+            class="profile__avatar"
+            src="<%=require('./image/Avatar.jpg')%>"
+            alt="Фото профиля"
+          />
+          <button
+            class="profile__btn-change-avatar-img"
+            type="button"
+            aria-label="Изменить фотографию"
+          >
+            <img
+              src="<%=require('./image/pencil-avatar.svg')%>"
+              alt="Редактировать"
+            />
           </button>
         </div>
         <div class="profile__info">
@@ -49,11 +60,7 @@
 
     <div class="popup" id="profile-info">
       <article class="popup-container">
-        <button
-          class="popup__close"
-          type="button"
-          aria-label="X"
-        ></button>
+        <button class="popup__close" type="button" aria-label="X"></button>
         <h2 class="popup-container__title">Редактировать профиль</h2>
         <form class="form form-profile" name="edit" method="post" novalidate>
           <fieldset class="form__input form__input-profile">
@@ -85,20 +92,22 @@
               required
             />
             <span class="input-profession-error form__item-error"></span>
-            <button class="form__button" id="profile-info-button" type="submit" aria-label="Сохранить">
+            <button
+              class="form__button"
+              id="profile-info-button"
+              type="submit"
+              aria-label="Сохранить"
+            >
               Сохранить
             </button>
           </fieldset>
         </form>
       </article>
     </div>
-    <div class="popup"  id="popup-new-card">
+
+    <div class="popup" id="popup-new-card">
       <article class="popup-container">
-        <button
-          class="popup__close"
-          type="button"
-          aria-label="X"
-        ></button>
+        <button class="popup__close" type="button" aria-label="X"></button>
         <h2 class="popup-container__title">Новое место</h2>
         <form class="form form-place" name="add" method="post" novalidate>
           <fieldset class="form__input">
@@ -126,7 +135,12 @@
               required
             />
             <span class="input-link-error form__item-error"></span>
-            <button class="form__button" id="create-new-card" type="submit" aria-label="Создать">
+            <button
+              class="form__button"
+              id="create-new-card"
+              type="submit"
+              aria-label="Создать"
+            >
               Создать
             </button>
           </fieldset>
@@ -134,17 +148,16 @@
       </article>
     </div>
 
-
-
-    <div class="popup"  id="popup-change-avatar-img">
+    <div class="popup" id="popup-change-avatar-img">
       <article class="popup-container">
-        <button
-          class="popup__close"
-          type="button"
-          aria-label="X"
-        ></button>
+        <button class="popup__close" type="button" aria-label="X"></button>
         <h2 class="popup-container__title">Обновить аватар</h2>
-        <form class="form change-avatar-img" name="add" method="post" novalidate>
+        <form
+          class="form change-avatar-img"
+          name="add"
+          method="post"
+          novalidate
+        >
           <fieldset class="form__input">
             <label for="input-change-avatar-img"></label>
             <input
@@ -156,7 +169,12 @@
               required
             />
             <span class="input-change-avatar-img-error form__item-error"></span>
-            <button class="form__button" id="create-avatar-img" type="submit" aria-label="Сохранить">
+            <button
+              class="form__button"
+              id="create-avatar-img"
+              type="submit"
+              aria-label="Сохранить"
+            >
               Сохранить
             </button>
           </fieldset>
@@ -164,51 +182,36 @@
       </article>
     </div>
 
-
-
-
-
-
-
     <div class="popup popup-image__background">
       <article class="popup-image">
-            <div class="popup-image__container">
-              <img src="#" alt="#" class="popup-image__photo">
-              <button
-              class="popup__close"
-              type="button"
-              aria-label="X"
-              ></button>
-              <h3 class="popup-image__text">Картинка</h3>
-            </div>
+        <div class="popup-image__container">
+          <img src="#" alt="#" class="popup-image__photo" />
+          <button class="popup__close" type="button" aria-label="X"></button>
+          <h3 class="popup-image__text">Картинка</h3>
+        </div>
       </article>
     </div>
 
     <template id="card-template">
       <li class="card">
-        <img
-          class="card__img" src="" alt=""
-        />
+        <img class="card__img" src="" alt="" />
         <button
-            class="card__trash"
-            type="button"
-            aria-label="Корзина"
-          ></button>
+          class="card__trash"
+          type="button"
+          aria-label="Корзина"
+        ></button>
         <div class="card__buttom">
           <h3 class="card__title"></h3>
           <div class="card__heart-number">
             <button
-            class="card__heart"
-            type="button"
-            aria-label="Сердечко"
-          ></button>
-          <p class="card__number-like">0</p>
+              class="card__heart"
+              type="button"
+              aria-label="Сердечко"
+            ></button>
+            <p class="card__number-like"></p>
           </div>
         </div>
       </li>
     </template>
   </body>
 </html>
-
-
-

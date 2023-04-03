@@ -17,10 +17,14 @@ const professionProfile = profileForm.querySelector('#input-profession');
 const cardForm = document.querySelector('.form-place');
 const namePlace = cardForm.querySelector('#input-name-place');
 const linkPlace = cardForm.querySelector('#input-link');
-const cangeAvatarImg = document.querySelector('.profile__btn-change-avatar-img');
+const profileBtnChangeAvatarImg = document.querySelector('.profile__btn-change-avatar-img');
 const popupChangeAvatarImg = document.querySelector('#popup-change-avatar-img');
-
-
+const buttonPlus = document.querySelector('#create-new-card')
+const buttonSaveUbdateAvatarImg = document.querySelector('#create-avatar-img')
+const formChangeAvatar = document.querySelector('.change-avatar-img')
+const inputChangeAvatarImg = formChangeAvatar.querySelector('#input-change-avatar-img')
+const profileAvatar = document.querySelector('.profile__avatar')
+const profileInfoButton = document.querySelector('#profile-info-button')
 
 
 const allElements = {
@@ -34,31 +38,4 @@ const allElements = {
 
 
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
-export {openPopupProfile, profileForm, openPopupNewCard, initialCards, popupNewCard, popupProfile, profileTitle, profileSubtitle, cardsContainer, popupImage, popupImagePhoto, popupImageText, closeButtons,cardTemplate, popupImageCloseClick, nameProfile, professionProfile, namePlace, linkPlace, allElements, cardForm, cangeAvatarImg, popupChangeAvatarImg,};
+export {openPopupProfile, profileForm, openPopupNewCard,  popupNewCard, popupProfile, profileTitle, profileSubtitle, cardsContainer, popupImage, popupImagePhoto, popupImageText, closeButtons,cardTemplate, popupImageCloseClick, nameProfile, professionProfile, namePlace, linkPlace, allElements, cardForm, popupChangeAvatarImg, buttonPlus, buttonSaveUbdateAvatarImg, profileBtnChangeAvatarImg, inputChangeAvatarImg, formChangeAvatar, profileAvatar, profileInfoButton};
