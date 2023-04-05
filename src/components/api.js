@@ -8,7 +8,6 @@ const config = {
 }
 
 
-
 const checkErrorPromise = (res) => {
     if (res.ok) {
       return res.json();
@@ -21,13 +20,16 @@ const checkErrorPromise = (res) => {
 };
 
 
+
+
+
+
 export const getUserInfo = () => {
   return fetch(`${config.baseUrl}/users/me`, {
     headers: config.headers
   })
     .then(checkErrorPromise)
 }
-
 
 
 export const getInitialCards = () => {
@@ -49,7 +51,6 @@ export const editUserInfo = ({name, about}) => {
   })
     .then(checkErrorPromise)
 }
-
 
 
 export const addNewCardServer = ({name, link}) => {
@@ -76,7 +77,7 @@ export const likesCards = (id, like) => {
 
 
 
-export const deleteCard = (id) => {
+export const deleteCardServer = (id) => {
   return fetch(`${config.baseUrl}/cards/${id}`, {
     method: 'DELETE',
     headers: config.headers,

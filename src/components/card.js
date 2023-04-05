@@ -2,18 +2,19 @@ import {
   cardForm,
   namePlace,
   linkPlace,
-  popupNewCard,
   cardTemplate,
+  popupNewCard,
   cardsContainer,
 } from './data.js';
 import { renderLoading, userId } from './utils';
 import { openFullScreenImageCard, closePopup } from './modal.js';
-import { getInitialCards, addNewCardServer, likesCards, deleteCard, } from './api.js';
+import { getInitialCards, addNewCardServer, likesCards, deleteCardServer, } from './api.js';
+
 
 // Добавляем новую карточку через кнопку +
 function addNewCard(evt) {
   evt.preventDefault();
-  renderLoading(popupNewCard, true);
+  renderLoading(evt.submitter, true);
   addNewCardServer({
     name: namePlace.value,
     link: linkPlace.value,
@@ -24,7 +25,7 @@ function addNewCard(evt) {
       closePopup(popupNewCard);
     })
     .catch((error) => console.log(`Ошибка при добовлении карточки: ${error}`))
-    .finally(() => renderLoading(popupNewCard, false));
+    .finally(() => renderLoading(evt.submitter, false));
 }
 
 
@@ -33,7 +34,7 @@ function createCard(card) {
   const newCard = cardTemplate.querySelector('.card').cloneNode(true);
   const cardTitle = newCard.querySelector('.card__title');
   const cardImg = newCard.querySelector('.card__img');
-  const cardTrash = newCard.querySelector('.card__trash');
+  const buttonDeleteCard = newCard.querySelector('.card__trash');
   const numberLikeCard = newCard.querySelector('.card__number-like');
   const likeCard = newCard.querySelector('.card__heart');
 
@@ -47,24 +48,19 @@ function createCard(card) {
   newCard.setAttribute('owner', card.owner._id);
 
   if (userId === newCard.getAttribute('owner')) {
-    cardTrash.classList.add('card__trash_visible');
+    buttonDeleteCard.classList.add('card__trash_visible');
   }
-
 
  if (card.likes.map(item => item._id).includes(userId)) {
   likeCard.classList.add('card__heart_checked')
  }
 
-
-  newCard.querySelector('.card__heart').addEventListener('click', (evt) => {
-    evt.target.classList.toggle('card__heart_checked');
-    checkLikes(likeCard, newCard.getAttribute('id'))
+  likeCard.addEventListener('click', (evt) => {
+    checkLikes(likeCard, newCard.getAttribute('id'), evt.target)
   });
 
-  const resetButton = newCard.querySelector('.card__trash');
-  resetButton.addEventListener('click', (evt) => {
-    evt.target.closest('.card').remove();
-    deleteCard(newCard.getAttribute('id'))
+  buttonDeleteCard.addEventListener('click', (evt) => {
+    deleteCard(newCard.getAttribute('id'), evt)
   });
 
   cardImg.addEventListener('click', () => {
@@ -74,23 +70,33 @@ function createCard(card) {
 }
 
 
-function changeLike (element, like) {
-  element.closest('.card').querySelector('.card__number-like').textContent = like.likes.length;
+function deleteCard (idCard, evt) {
+  deleteCardServer(idCard)
+  .then(() => {
+    evt.target.closest('.card').remove();
+  })
+  .catch((error) => console.log(`Произошла ошибка удаления карточки: ${error}`))
 }
 
-function checkLikes (element, id) {
-  if (element.classList.contains('card__heart_checked')) {
-    likesCards(id, 'like')
-    .then(like => {
-      changeLike(element, like)
-    })
-    .catch((error) => console.log(`Произошла ошибка добавления лайка: ${error}`))
-  } else {
+
+function changeLike (element, like, evt) {
+  element.closest('.card').querySelector('.card__number-like').textContent = like.likes.length;
+  evt.classList.toggle('card__heart_checked')
+}
+
+function checkLikes (element, id, evt) {
+  if (evt.classList.contains('card__heart_checked')) {
     likesCards(id)
     .then(like => {
-      changeLike(element, like)
+      changeLike(element, like, evt)
     })
     .catch((error) => console.log(`Произошла ошибка удаления лайка: ${error}`))
+  } else {
+    likesCards(id, 'like')
+    .then(like => {
+      changeLike(element, like, evt)
+    })
+    .catch((error) => console.log(`Произошла ошибка при добавлении лайка: ${error}`))
   }
 }
 

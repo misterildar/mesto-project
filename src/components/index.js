@@ -1,28 +1,41 @@
 import {
   cardForm,
-  profileForm,
+  namePlace,
+  linkPlace,
+  buttonPlus,
   allElements,
+  nameProfile,
+  profileForm,
+  popupProfile,
+  popupNewCard,
+  closeButtons,
   profileAvatar,
   cardsContainer,
+  openPopupProfile,
   formChangeAvatar,
+  openPopupNewCard,
+  professionProfile,
+  profileInfoButton,
   popupChangeAvatarImg,
   inputChangeAvatarImg,
   buttonSaveUbdateAvatarImg,
   profileBtnChangeAvatarImg,
 } from './data.js';
 import '../pages/index.css';
-import { openPopup, closePopup } from './modal.js';
 import { addNewCard, createCard } from './card.js';
-import { changeAvatarImg, getUserInfo, getInitialCards} from './api.js';
-import { enableValidation, hideInputError, buttonFalse } from './validate.js';
-import { handleProfileFormSubmit, updateUserData, renderLoading} from './utils';
+import { openPopup, closePopup, fillProfileInputs } from './modal.js';
+import { changeAvatarImg, getUserInfo, getInitialCards, editUserInfo} from './api.js';
+import { enableValidation, hideInputError, disableButton } from './validate.js';
+import { updateUserData, renderLoading, handleSubmit} from './utils';
+
+
 
 enableValidation(allElements);
 
 
 function updateAvatarImage(evt) {
   evt.preventDefault();
-  renderLoading(popupChangeAvatarImg, true);
+  renderLoading(evt.submitter, true);
   changeAvatarImg(inputChangeAvatarImg.value)
     .then((img) => {
       profileAvatar.src = img.avatar;
@@ -33,15 +46,67 @@ function updateAvatarImage(evt) {
         `Произошла ошибка при попытке редактировании данных пользователя: ${error}`
       )
     )
-    .finally(() => renderLoading(popupChangeAvatarImg, false));
+    .finally(() => renderLoading(evt.submitter, false));
 }
+
+
+// Для закрытия всех popup
+closeButtons.forEach((button) => {
+  // находим 1 раз ближайший к крестику попап
+  const popup = button.closest('.popup');
+  // устанавливаем обработчик закрытия на крестик
+  button.addEventListener('click', () => closePopup(popup));
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup')) {
+      closePopup(popup);
+    }
+  });
+});
+
+
+// Редактирование Профиля
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+  renderLoading(evt.submitter, true);
+  editUserInfo({
+    name: nameProfile.value,
+    about: professionProfile.value,
+  })
+    .then((userInfo) => {
+      updateUserData(userInfo);
+      closePopup(popupProfile);
+    })
+    .catch((error) =>
+      console.log(
+        `Произошла ошибка при редактировании данных пользователя: ${error}`
+      )
+    )
+    .finally(() => renderLoading(evt.submitter, false));
+}
+
 
 
 profileBtnChangeAvatarImg.addEventListener('click', () => {
   openPopup(popupChangeAvatarImg);
   hideInputError(formChangeAvatar, inputChangeAvatarImg, allElements);
   formChangeAvatar.reset();
-  buttonFalse(buttonSaveUbdateAvatarImg, allElements);
+  disableButton(buttonSaveUbdateAvatarImg, allElements);
+});
+
+openPopupProfile.addEventListener('click', () => {
+  fillProfileInputs();
+  openPopup(popupProfile);
+  hideInputError(profileForm, nameProfile, allElements);
+  hideInputError(profileForm, professionProfile, allElements);
+  disableButton(profileInfoButton, allElements);
+});
+
+openPopupNewCard.addEventListener('click', () => {
+  openPopup(popupNewCard);
+  hideInputError(cardForm, namePlace, allElements);
+  hideInputError(cardForm, linkPlace, allElements);
+  disableButton(buttonPlus, allElements);
+  cardForm.reset();
 });
 
 
@@ -50,7 +115,6 @@ cardForm.addEventListener('submit', addNewCard);
 formChangeAvatar.addEventListener('submit', updateAvatarImage);
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
-
 
 
 
